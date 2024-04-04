@@ -42,6 +42,8 @@ dependencies:
 #  vibration: ^1.8.4
 #  assets_audio_player: ^3.1.1
   cached_network_image: ^3.3.1
+  icons_launcher: ^2.1.7
+  rename: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -95,3 +97,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+icons_launcher:
+  image_path: "assets/images/photo.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true

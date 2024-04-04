@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class StartTimer extends StatefulWidget {
 class _StartTimerState extends State<StartTimer> {
   late Timer _timer;
   bool exitProgram = false;
+  final player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,9 @@ class _StartTimerState extends State<StartTimer> {
                     {
                       state as TimerResultState;
                       exitProgram = state.isTimer;
+                      if(exitProgram){
+                        playSound();
+                      }
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         width: double.infinity,
@@ -114,6 +119,7 @@ class _StartTimerState extends State<StartTimer> {
                             ),
                             IconButton(
                               onPressed: () {
+                                player.stop();
                                 Navigator.pop(context);
                               },
                               icon: Icon(
@@ -136,4 +142,9 @@ class _StartTimerState extends State<StartTimer> {
       ),
     );
   }
+  Future<void> playSound()async {
+    String audioPath = "voice/golos_iphone.mp3";
+    await player.play(AssetSource(audioPath));
+  }
+
 }
